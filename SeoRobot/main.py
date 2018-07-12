@@ -32,6 +32,8 @@ def excuteGoogle(url, keywords):
         driver.get(url)  # Url de la pagina a Buscar
         driver.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
         links = driver.find_elements_by_css_selector('.rc > .r a')
+        print("Geting Links...")
+        time.sleep(3)
         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1) ]))
         print("Finished SeoRobot Google")
 
@@ -46,6 +48,8 @@ def excuteBing(url, keywords):
         driver.get(url)  # Url de la pagina a Buscar
         driver.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
         links = driver.find_elements_by_css_selector('.b_algo a')
+        print("Geting Links...")
+        time.sleep(3)
         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
         print("Finished SeoRobot Bing")
 
@@ -59,6 +63,8 @@ def excuteDuckDuck(url, keywords):
         driver.get(url)  # Url de la pagina a Buscar
         driver.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
         links = driver.find_elements_by_css_selector('.result__title a')
+        print("Geting Links...")
+        time.sleep(3)
         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
         print("Finished SeoRobot DuckDuck")
 
@@ -66,8 +72,24 @@ def excuteDuckDuck(url, keywords):
         time.sleep(10)
         driver.quit()
 
+def excuteYahoo(url, keywords):
+    try:
+        print("Start SeoRobot Yahoo")
+        driver.get(url)  # Url de la pagina a Buscar
+        driver.find_element_by_name('p').send_keys(keywords, Keys.ENTER)
+        time.sleep(10)
+        links = driver.find_elements_by_css_selector('h3.title a')
+        print("Geting Links...")
+        pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
+        print("Finished SeoRobot Yahoo")
+
+    finally:
+        time.sleep(10)
+        driver.quit()
+
 if __name__ == "__main__":
 
-    #excuteBing('http://www.bing.com', 'bancolombia')
-    #excuteGoogle('http://www.google.com', 'bancolombia')
+    excuteBing('http://www.bing.com', 'bancolombia')
+    excuteGoogle('http://www.google.com', 'bancolombia')
     excuteDuckDuck('https://duckduckgo.com/', 'bancolombia')
+    excuteYahoo('https://www.yahoo.com/', 'bancolombia')
