@@ -53,7 +53,21 @@ def excuteBing(url, keywords):
         time.sleep(10)
         driver.quit()
 
+def excuteDuckDuck(url, keywords):
+    try:
+        print("Start SeoRobot DuckDuck")
+        driver.get(url)  # Url de la pagina a Buscar
+        driver.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
+        links = driver.find_elements_by_css_selector('.result__title a')
+        pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
+        print("Finished SeoRobot DuckDuck")
+
+    finally:
+        time.sleep(10)
+        driver.quit()
+
 if __name__ == "__main__":
 
     #excuteBing('http://www.bing.com', 'bancolombia')
-    excuteGoogle('http://www.google.com', 'bancolombia')
+    #excuteGoogle('http://www.google.com', 'bancolombia')
+    excuteDuckDuck('https://duckduckgo.com/', 'bancolombia')
