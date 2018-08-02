@@ -1,12 +1,9 @@
 import os
 import pprint
 import time
-
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
