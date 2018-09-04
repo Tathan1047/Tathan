@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(__file__)
 
 driver = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
 wait_driver = WebDriverWait(driver=driver, timeout=30)
@@ -87,9 +87,33 @@ def excuteYahoo(url, keywords):
         time.sleep(10)
         driver.quit()
 
+
+
+def titan (url,user, passwd):
+    try:
+        driver.get(url)
+        driver.maximize_window()
+        time.sleep(5)
+        driver.find_element_by_xpath('/html/body/div[2]/header/div[1]/div/div/div[2]/div/div[1]/div/a[1]').click()
+        time.sleep(5)
+        driver.find_element_by_xpath('//*[@id="edit-name"]').send_keys(user)
+        time.sleep(5)
+        driver.find_element_by_xpath('//*[@id="edit-pass"]').send_keys(passwd, Keys.ENTER)
+        time.sleep(3)
+        driver.find_element_by_xpath('/html/body/div[2]/div[2]/main/div[2]/div[2]/div[1]/div/div[1]/div/div/a/img').click()
+        time.sleep(5)
+        driver.find_element_by_xpath('//*[@id="voto"]').click()
+
+
+    finally:
+        time.sleep(10)
+        driver.quit()
+
 if __name__ == "__main__":
 
-    excuteBing('http://www.bing.com', 'bancolombia')
-    excuteGoogle('http://www.google.com', 'bancolombia')
-    excuteDuckDuck('https://duckduckgo.com/', 'bancolombia')
-    excuteYahoo('https://www.yahoo.com/', 'bancolombia')
+    #excuteBing('http://www.bing.com', 'bancolombia')
+   # excuteGoogle('http://www.google.com', 'bancolombia')
+    #excuteDuckDuck('https://duckduckgo.com/', 'bancolombia')
+    #excuteYahoo('https://www.yahoo.com/', 'bancolombia')
+
+    titan('https://titanes.noticias.caracoltv.com')
