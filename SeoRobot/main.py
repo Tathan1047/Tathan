@@ -14,6 +14,7 @@ logging.basicConfig( level=logging.DEBUG,format='[%(levelname)s] - %(threadName)
 BASE_DIR = os.path.dirname(__file__)
 
 driver = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
+driver1 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
 driver2 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
 driver3 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
 driver4 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
@@ -116,10 +117,31 @@ def titan(url, user, passwd):
         time.sleep(10)
         driver.quit()
 
+def titan2(url, user, passwd):
+    try:
+        driver1.get(url)
+        driver1.maximize_window()
+        time.sleep(5)
+        driver1.find_element_by_xpath('/html/body/div[2]/header/div[1]/div/div/div[2]/div/div[1]/div/a[1]').click()
+        time.sleep(5)
+        driver1.find_element_by_xpath('//*[@id="edit-name"]').send_keys(user)
+        time.sleep(5)
+        driver1.find_element_by_xpath('//*[@id="edit-pass"]').send_keys(passwd, Keys.ENTER)
+        time.sleep(3)
+        driver1.find_element_by_xpath(
+            '/html/body/div[2]/div[2]/main/div[2]/div[2]/div[1]/div/div[1]/div/div/a/img').click()
+        time.sleep(5)
+        driver1.find_element_by_xpath('//*[@id="voto"]').click()
+
+
+    finally:
+        time.sleep(10)
+        driver.quit()
+
 tiempo_ini= datetime.datetime.now()
 
-t1 = threading.Thread(name="Hilo1", target=excuteDuckDuck, args=('http://www.duckduckgo.com', 'farc'))
-t2 = threading.Thread(name="Hilo2", target=excuteYahoo, args=('http://www.yahoo.com', 'farc'))
+t1 = threading.Thread(name="Hilo1", target=titan, args=('https://titanes.noticias.caracoltv.com','jmmdaya@gmail.com','jmm1047384159'))
+t2 = threading.Thread(name="Hilo1", target=titan2, args=('https://titanes.noticias.caracoltv.com','malleta.ochoa@gmail.com','taliana2014'))
 t3 = threading.Thread(name="Hilo3", target=excuteGoogle, args=('http://www.google.com', 'farc'))
 t4 = threading.Thread(name="Hilo4", target=excuteBing, args=('http://www.bing.com', 'farc'))
 
@@ -127,15 +149,15 @@ t4 = threading.Thread(name="Hilo4", target=excuteBing, args=('http://www.bing.co
 
 if __name__ == "__main__":
 
-    t1.start()
+    #t1.start()
     t2.start()
-    t3.start()
-    t4.start()
+    #t3.start()
+    #t4.start()
 
-    t1.join()
+    #t1.join()
     t2.join()
-    t3.join()
-    t4.join()
+    #t3.join()
+    #t4.join()
 
     tiempo_fin = datetime.datetime.now()
     print("Tiempo pasado" + str(tiempo_fin.second - tiempo_ini.second))
