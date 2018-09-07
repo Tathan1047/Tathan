@@ -9,15 +9,13 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 
-logging.basicConfig( level=logging.DEBUG,format='[%(levelname)s] - %(threadName)-10s : %(message)s')
 
 BASE_DIR = os.path.dirname(__file__)
 
 driver = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
-driver1 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
-driver2 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
-driver3 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
-driver4 = WebDriver(executable_path=os.path.join(BASE_DIR, 'driver', 'chromedriver'))
+
+
+
 wait_driver = WebDriverWait(driver=driver, timeout=30)
 
 
@@ -32,135 +30,132 @@ def get_element(driver, wait, by, value, retry=3):
     return None
 
 
-def excuteGoogle(url, keywords):
-    try:
-        print("Start SeoRobot Google")
-        driver2.get(url)  # Url de la pagina a Buscar
-        driver2.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
-        links = driver2.find_elements_by_css_selector('.rc > .r a')
-        print("Geting Links...")
-        time.sleep(3)
-        pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
-        print("Finished SeoRobot Google")
+# def excuteGoogle(url, keywords):
+#     try:
+#         print("Start SeoRobot Google")
+#         driver2.get(url)  # Url de la pagina a Buscar
+#         driver2.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
+#         links = driver2.find_elements_by_css_selector('.rc > .r a')
+#         print("Geting Links...")
+#         time.sleep(3)
+#         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
+#         print("Finished SeoRobot Google")
+#
+#     finally:
+#         time.sleep(10)
+#         driver2.quit()
+#
+#
+# def excuteBing(url, keywords):
+#     try:
+#         print("Start SeoRobot Bing")
+#         driver3.get(url)  # Url de la pagina a Buscar
+#         driver3.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
+#         links = driver3.find_elements_by_css_selector('.b_algo a')
+#         print("Geting Links...")
+#         time.sleep(3)
+#         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
+#         print("Finished SeoRobot Bing")
+#
+#     finally:
+#         time.sleep(10)
+#         driver3.quit()
+#
+#
+# def excuteDuckDuck(url, keywords):
+#     try:
+#         print("Start SeoRobot DuckDuck")
+#         driver4.get(url)  # Url de la pagina a Buscar
+#         driver4.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
+#         links = driver4.find_elements_by_css_selector('.result__title a')
+#         print("Geting Links...")
+#         time.sleep(3)
+#         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
+#         print("Finished SeoRobot DuckDuck")
+#
+#     finally:
+#         time.sleep(10)
+#         driver4.quit()
+#
+#
+# def excuteYahoo(url, keywords):
+#     try:
+#         print("Start SeoRobot Yahoo")
+#         driver.get(url)  # Url de la pagina a Buscar
+#         driver.find_element_by_name('p').send_keys(keywords, Keys.ENTER)
+#         time.sleep(10)
+#         links = driver.find_elements_by_css_selector('h3.title a')
+#         print("Geting Links...")
+#         pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
+#         print("Finished SeoRobot Yahoo")
+#
+#     finally:
+#         time.sleep(10)
+#         driver.quit()
 
-    finally:
-        time.sleep(10)
-        driver2.quit()
+users = ['diomyc1020@outlook.com', 'JulimarceBerdugo13@gmail.com', 'luisangelparra@hotmail.com',
+'mromero803@outlook.es', 'linajf@outlook.com','lruizinformatica@gmail.com','dilanlokura22@hotmail.com',
+'jrodriguez803@outlook.es', 'yurleis03@outlook.com', 'elidamoralez8@gmail.com', 'luzelenamercado8@gmail.com',
+'puellocarmen8@gmail.com', 'jaiderllamab@hotmail.com','yimilethb@gmail.com', 'castrodiazharlin86@gmail.com',
+'taliaquintero.18@hotmail.com', 'jdiazpajaro57@gmail.com', 'diazpajaro29@gmail.com', 'jcastillav24@gmail.com',
+'hectoralfonsomart8@gmail.com', 'yuvadyb@gmail.com','sanchezestada847@gmail.com'
 
+         ]
 
-def excuteBing(url, keywords):
-    try:
-        print("Start SeoRobot Bing")
-        driver3.get(url)  # Url de la pagina a Buscar
-        driver3.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
-        links = driver3.find_elements_by_css_selector('.b_algo a')
-        print("Geting Links...")
-        time.sleep(3)
-        pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
-        print("Finished SeoRobot Bing")
-
-    finally:
-        time.sleep(10)
-        driver3.quit()
-
-
-def excuteDuckDuck(url, keywords):
-    try:
-        print("Start SeoRobot DuckDuck")
-        driver4.get(url)  # Url de la pagina a Buscar
-        driver4.find_element_by_name('q').send_keys(keywords, Keys.ENTER)
-        links = driver4.find_elements_by_css_selector('.result__title a')
-        print("Geting Links...")
-        time.sleep(3)
-        pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
-        print("Finished SeoRobot DuckDuck")
-
-    finally:
-        time.sleep(10)
-        driver4.quit()
-
-
-def excuteYahoo(url, keywords):
-    try:
-        print("Start SeoRobot Yahoo")
-        driver.get(url)  # Url de la pagina a Buscar
-        driver.find_element_by_name('p').send_keys(keywords, Keys.ENTER)
-        time.sleep(10)
-        links = driver.find_elements_by_css_selector('h3.title a')
-        print("Geting Links...")
-        pprint.pprint(dict([(i, _.get_attribute('href')) for i, _ in enumerate(links, 1)]))
-        print("Finished SeoRobot Yahoo")
-
-    finally:
-        time.sleep(10)
-        driver.quit()
-
-
-def titan(url, user, passwd):
+def titan():
+    url='https://titanes.noticias.caracoltv.com'
     try:
         driver.get(url)
         driver.maximize_window()
-        time.sleep(5)
+        time.sleep(3)
         driver.find_element_by_xpath('/html/body/div[2]/header/div[1]/div/div/div[2]/div/div[1]/div/a[1]').click()
-        time.sleep(5)
-        driver.find_element_by_xpath('//*[@id="edit-name"]').send_keys(user)
-        time.sleep(5)
-        driver.find_element_by_xpath('//*[@id="edit-pass"]').send_keys(passwd, Keys.ENTER)
+
         time.sleep(3)
-        driver.find_element_by_xpath(
-            '/html/body/div[2]/div[2]/main/div[2]/div[2]/div[1]/div/div[1]/div/div/a/img').click()
-        time.sleep(5)
-        driver.find_element_by_xpath('//*[@id="voto"]').click()
+
+        for user in users:
+            Login(user)
 
 
     finally:
-        time.sleep(10)
+        time.sleep(5)
         driver.quit()
 
-def titan2(url, user, passwd):
-    try:
-        driver1.get(url)
-        driver1.maximize_window()
-        time.sleep(5)
-        driver1.find_element_by_xpath('/html/body/div[2]/header/div[1]/div/div/div[2]/div/div[1]/div/a[1]').click()
-        time.sleep(5)
-        driver1.find_element_by_xpath('//*[@id="edit-name"]').send_keys(user)
-        time.sleep(5)
-        driver1.find_element_by_xpath('//*[@id="edit-pass"]').send_keys(passwd, Keys.ENTER)
-        time.sleep(3)
-        driver1.find_element_by_xpath(
-            '/html/body/div[2]/div[2]/main/div[2]/div[2]/div[1]/div/div[1]/div/div/a/img').click()
-        time.sleep(5)
-        driver1.find_element_by_xpath('//*[@id="voto"]').click()
 
+def Login(user):
+    driver.find_element_by_xpath('//*[@id="edit-name"]').send_keys(user)
+    time.sleep(3)
+    driver.find_element_by_xpath('//*[@id="edit-pass"]').send_keys('franktitanes', Keys.ENTER)
+    time.sleep(3)
+    driver.find_element_by_xpath(
+        '/html/body/div[2]/div[2]/main/div[2]/div[2]/div[1]/div/div[1]/div/div/a/img').click()
+    time.sleep(3)
+    driver.find_element_by_xpath('//*[@id="voto"]').click()
+    time.sleep(3)
+    driver.refresh()
+    time.sleep(3)
+    driver.find_element_by_xpath('/html/body/div[2]/header/div[1]/div/div/div[2]/div/div[1]/div/a').click()
+    driver.find_element_by_xpath('/html/body/div[2]/header/div[1]/div/div/div[2]/div/div[1]/div/a[1]').click()
 
-    finally:
-        time.sleep(10)
-        driver.quit()
 
 tiempo_ini= datetime.datetime.now()
 
-t1 = threading.Thread(name="Hilo1", target=titan, args=('https://titanes.noticias.caracoltv.com','jmmdaya@gmail.com','jmm1047384159'))
-t2 = threading.Thread(name="Hilo1", target=titan2, args=('https://titanes.noticias.caracoltv.com','malleta.ochoa@gmail.com','taliana2014'))
-t3 = threading.Thread(name="Hilo3", target=excuteGoogle, args=('http://www.google.com', 'farc'))
-t4 = threading.Thread(name="Hilo4", target=excuteBing, args=('http://www.bing.com', 'farc'))
+t1 = threading.Thread(target=titan, args= ())
+#t2 = threading.Thread(target=titan1, args=('https://titanes.noticias.caracoltv.com','mh550348@gmail.com','franktitanes'))
+
 
 
 
 if __name__ == "__main__":
 
-    #t1.start()
-    t2.start()
-    #t3.start()
-    #t4.start()
+    t1.start()
+    #t2.start()
 
-    #t1.join()
-    t2.join()
-    #t3.join()
-    #t4.join()
+    #t2.join()
+
 
     tiempo_fin = datetime.datetime.now()
-    print("Tiempo pasado" + str(tiempo_fin.second - tiempo_ini.second))
+    print("Process Time" + str(tiempo_fin.second - tiempo_ini.second))
+    print("Listo Todos Los Votos")
 
     # excuteBing('http://www.bing.com', 'bancolombia')
     #excuteGoogle('http://www.google.com', 'esperanzagomez')
